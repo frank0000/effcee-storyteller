@@ -1,0 +1,2 @@
+Template.storyDocument.helpers({
+});
