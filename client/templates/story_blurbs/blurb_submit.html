@@ -1,0 +1,12 @@
+<template name="blurbSubmit">
+  <form name="blurb" class="blurb-form form">
+    <div class="form-group {{errorClass 'body'}}">
+        <div class="controls">
+            <label for="body">Add to this story</label>
+            <textarea name="body" id="body" class="form-control" rows="3"></textarea>
+            <span class="help-block">{{errorMessage 'body'}}</span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</template>

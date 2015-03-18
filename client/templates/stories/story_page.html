@@ -8,4 +8,11 @@
     {{/each}}
     </p>
   </div>
+
+  {{#if currentUser}}
+    {{> blurbSubmit}}
+  {{else}}
+    <p>Please log in to add a blurb.</p>
+  {{/if}}
+
 </template>
