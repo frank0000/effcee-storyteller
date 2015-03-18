@@ -1,5 +1,5 @@
 Template.storyPage.helpers({
   storyBlurbs: function() {
-    return StoryBlurbs.find();
+    return StoryBlurbs.find({storyId: this._id});
   }
 });
