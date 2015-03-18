@@ -1,5 +1,11 @@
 <template name="storyPage">
-  <div class="story-page page">
-    {{> storyDocument}}
+  {{> storyDocument}}
+  
+  <div class="story-blurbs">
+    <p>
+    {{#each storyBlurbs}}
+      {{> blurbItem}}
+    {{/each}}
+    </p>
   </div>
 </template>

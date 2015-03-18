@@ -27,12 +27,12 @@ Template.storySubmit.events({
     Meteor.call('storyInsert', story, function(error, result) {
       // display the error to the user and abort
       if (error) {
-        return throwError(error.reason);
+        return Errors.throw(error.reason);
       }
 
       // show this result but route anyway
       if (result.storyExists) {
-        return throwError('A story with this title already exists');
+        return Errors.throw('A story with this title already exists');
       }
 
       Router.go('storyPage', {_id: result._id});  
