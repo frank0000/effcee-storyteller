@@ -2,6 +2,10 @@
   <div class="story">
     <div class="story-content">
       <a href="{{pathFor 'storyPage'}}"><h3>{{title}}</h3></a>
+      <p>
+        submitted by {{author}}
+        {{#if ownStory}}<a href="{{pathFor 'storyEdit'}}">Edit</a>{{/if}}
+      </p>
     </div>
   </div>
 </template>
