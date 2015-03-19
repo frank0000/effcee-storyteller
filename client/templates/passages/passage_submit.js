@@ -1,33 +1,33 @@
-Template.blurbSubmit.created = function() {
-  Session.set('blurbSubmitErrors', {});
+Template.passageSubmit.created = function() {
+  Session.set('passageSubmitErrors', {});
 }
 
-Template.blurbSubmit.helpers({
+Template.passageSubmit.helpers({
   errorMessage: function(field) {
-    return Session.get('blurbSubmitErrors')[field];
+    return Session.get('passageSubmitErrors')[field];
   },
   errorClass: function (field) {
-    return !!Session.get('blurbSubmitErrors')[field] ? 'has-error' : '';
+    return !!Session.get('passageSubmitErrors')[field] ? 'has-error' : '';
   }
 });
 
-Template.blurbSubmit.events({
+Template.passageSubmit.events({
   'submit form': function(e, template) {
     e.preventDefault();
     
     var $body = $(e.target).find('[name=body]');
-    var storyBlurb = {
+    var passage = {
       body: $body.val(),
       storyId: template.data._id
     };
     
     var errors = {};
-    if (! storyBlurb.body) {
+    if (! passage.body) {
       errors.body = "Please write some content";
-      return Session.set('blurbSubmitErrors', errors);
+      return Session.set('passageSubmitErrors', errors);
     }
     
-    Meteor.call('storyBlurbInsert', storyBlurb, function(error, storyBlurbId) {
+    Meteor.call('passageInsert', passage, function(error, passageId) {
       if (error){
         throwError(error.reason);
       } else {

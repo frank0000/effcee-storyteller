@@ -1,18 +1,18 @@
 <template name="storyPage">
   {{> storyDocument}}
   
-  <div class="story-blurbs">
+  <div class="passages">
     <p>
-    {{#each storyBlurbs}}
-      {{> blurbItem}}
+    {{#each passages}}
+      {{> passageItem}}
     {{/each}}
     </p>
   </div>
 
   {{#if currentUser}}
-    {{> blurbSubmit}}
+    {{> passageSubmit}}
   {{else}}
-    <p>Please log in to add a blurb.</p>
+    <p>Please log in to add a passage.</p>
   {{/if}}
 
 </template>

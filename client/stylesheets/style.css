@@ -7,7 +7,7 @@
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
 
-.grid-block, .main, .story, .story-blurbs, .blurb-form {
+.grid-block, .main, .story, .passages, .passage-form {
   background: #fff;
   border-radius: 3px;
   padding: 10px;
@@ -86,39 +86,39 @@ body {
     float: right;
     margin-top: 7px; }
 
-.blurb a {
+.passage-item a {
   text-decoration:none;
   color:inherit;
 }
 
-.story-blurbs {
+.passages {
   /* For modern browsers */
   /* For IE 6/7 (trigger hasLayout) */
   *zoom: 1;
   position: relative;
   opacity: 1; }
-  .story-blurbs:before, .story-blurbs:after {
+  .passages:before, .passages:after {
     content: "";
     display: table; }
-  .story-blurbs:after {
+  .passages:after {
     clear: both; }
-  .story-blurbs.invisible {
+  .passages.invisible {
     opacity: 0; }
-  .story-blurbs.instant {
+  .passages.instant {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     transition: none; }
-  .story-blurbs.animate{
+  .passages.animate{
     -webkit-transition: all 300ms 0ms;
     -moz-transition: all 300ms 0ms ease-in;
     -o-transition: all 300ms 0ms ease-in;
     transition: all 300ms 0ms ease-in; }
-  .story-blurbs .upvote {
+  .passages .upvote {
     display: block;
     margin: 7px 12px 0 0;
     float: left; }
-  .story-blurbs .discuss {
+  .passages .discuss {
     display: block;
     float: right;
     margin-top: 7px; }
@@ -138,18 +138,18 @@ body {
   .comments li p:last-child {
     margin-bottom: 0; }
 
-  .story-blurbs {
+  .passages {
   list-style-type: none;
   margin: 0; }
-  .story-blurbs li h4 {
+  .passages li h4 {
     font-size: 16px;
     margin: 0; }
-    .story-blurbs li h4 .date {
+    .passages li h4 .date {
       font-size: 12px;
       font-weight: normal; }
-    .story-blurbs li h4 a {
+    .passages li h4 a {
       font-size: 12px; }
-  .story-blurbs li p:last-child {
+  .passages li p:last-child {
     margin-bottom: 0; }
 
 .dropdown-menu span {

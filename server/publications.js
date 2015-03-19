@@ -2,7 +2,7 @@ Meteor.publish('stories', function() {
   return Stories.find();
 });
 
-Meteor.publish('storyBlurbs', function(storyId) {
+Meteor.publish('passages', function(storyId) {
   check(storyId, String);
-  return StoryBlurbs.find({storyId: storyId});
+  return Passages.find({storyId: storyId});
 });

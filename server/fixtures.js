@@ -18,20 +18,20 @@ if (Stories.find().count() === 0) {
     submitted: new Date(now - 7 * 3600 * 1000)
   });
   
-  StoryBlurbs.insert({
+  Passages.insert({
     storyId: storyOneId,
     userId: owlie._id,
     author: owlie.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
-    body: 'It was a dark and stormy night.  Things were said.  Stuff happened. '
+    body: 'It was a dark and stormy night.  Things were said.  Stuff happened.'
   });
   
-  StoryBlurbs.insert({
+  Passages.insert({
     storyId: storyOneId,
     userId: stan._id,
     author: stan.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
-    body: 'And then the shit hit the fan.  The big one hit.  We were all really shook.'
+    body: 'And then the **shit** hit the fan.  The big one hit.  We were all really *shook*.\n\nAnd so it goes.'
   });
 
   Stories.insert({
