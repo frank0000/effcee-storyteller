@@ -23,7 +23,7 @@ Template.passageSubmit.events({
     
     var errors = {};
     if (! passage.body) {
-      errors.body = "Please write some content";
+      errors.body = "Passage empty, please write some content";
       return Session.set('passageSubmitErrors', errors);
     }
     

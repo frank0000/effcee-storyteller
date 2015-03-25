@@ -1,0 +1,13 @@
+<template name="passageEdit">
+  <form name="passage" class="passage-form form">
+    <div class="form-group {{errorClass 'body'}}">
+      <div class="controls">
+          <label for="body">Edit this passage</label>
+          <textarea name="body" id="body" class="form-control" value="{{body}}"></textarea>
+          <span class="help-block">{{errorMessage 'body'}}</span>
+     </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary submit"/>
+    <hr/>
+  </form>
+</template>
