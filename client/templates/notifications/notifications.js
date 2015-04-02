@@ -9,7 +9,7 @@ Template.notifications.helpers({
 
 Template.notificationItem.helpers({
   notificationStoryPath: function() {
-    return Router.routes.storyPage.path({_id: this.storyId});
+    return Router.routes.passagePage.path({storyId: this.storyId, _id: this.passageId});
   },
   notificationActivityTypeLabel: function() {
     return this.activityType;

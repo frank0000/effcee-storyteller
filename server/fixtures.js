@@ -45,13 +45,13 @@ if (Stories.find().count() === 0) {
   });
 
   Activities.insert({
-      userId: passage.userId,
-      userName: passage.author,
+      userId: owlie.userId,
+      userName: owlie.profile.name,
       timeCompleted: new Date(now - 2 * 3600 * 1000),
       storyId: passage.storyId,
       passageId: passage._id,
       activityType: 'added comment',
-      note: 'Threw a bit of curve ball at me Poops!'
+      body: 'Threw a bit of curve ball at me Stan my man!'
   });
 
   Activities.insert({
@@ -61,7 +61,7 @@ if (Stories.find().count() === 0) {
       storyId: passage.storyId,
       passageId: passage._id,
       activityType: 'added comment',
-      note: 'Yup, interested in seeing where you go with that Stanny ol boy...'
+      body: 'Yup, interested in seeing where you go with that Poopie ol boy...'
   });
 
 
