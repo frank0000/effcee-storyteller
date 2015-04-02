@@ -7,6 +7,11 @@ Meteor.publish('passages', function(storyId) {
   return Passages.find({storyId: storyId});
 });
 
+Meteor.publish('activities', function(passageId) {
+  check(passageId, String);
+  return Activities.find({passageId: passageId});
+});
+
 Meteor.publish('notifications', function() {
   return Notifications.find({userId: this.userId, read: false});
 });

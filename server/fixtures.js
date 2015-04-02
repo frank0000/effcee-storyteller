@@ -26,13 +26,44 @@ if (Stories.find().count() === 0) {
     body: 'It was a dark and stormy night.  Things were said.  Stuff happened.'
   });
   
-  Passages.insert({
+  var passage = {
     storyId: storyOneId,
     userId: stan._id,
     author: stan.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
     body: 'And then the **shit** hit the fan.  The big one hit.  We were all really *shook*.\n\nAnd so it goes.'
+  };
+  passage._id = Passages.insert(passage);
+
+  Activities.insert({
+      userId: passage.userId,
+      userName: passage.author,
+      timeCompleted: passage.submittedTime,
+      storyId: passage.storyId,
+      passageId: passage._id,
+      activityType: 'added passage'
   });
+
+  Activities.insert({
+      userId: passage.userId,
+      userName: passage.author,
+      timeCompleted: new Date(now - 2 * 3600 * 1000),
+      storyId: passage.storyId,
+      passageId: passage._id,
+      activityType: 'added comment',
+      note: 'Threw a bit of curve ball at me Poops!'
+  });
+
+  Activities.insert({
+      userId: passage.userId,
+      userName: passage.author,
+      timeCompleted: new Date(now - 1 * 3600 * 1000),
+      storyId: passage.storyId,
+      passageId: passage._id,
+      activityType: 'added comment',
+      note: 'Yup, interested in seeing where you go with that Stanny ol boy...'
+  });
+
 
   Stories.insert({
     title: 'Tale of Two Monkeys',

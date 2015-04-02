@@ -10,4 +10,10 @@
       {{#if canEditPassage}}<a href="{{pathFor 'passageEdit'}}">Edit</a>{{/if}}
     </p>
   </div>
+
+  <ul class="comments">
+    {{#each comments}}
+      {{> commentItem}}
+    {{/each}}
+  </ul>
 </template>
