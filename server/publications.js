@@ -4,7 +4,7 @@ Meteor.publish('stories', function() {
 
 Meteor.publish('passages', function(storyId) {
   check(storyId, String);
-  return Passages.find({storyId: storyId});
+  return Passages.find({storyId: storyId}, {sort: {submitted: 1}});
 });
 
 Meteor.publish('activities', function(passageId) {
