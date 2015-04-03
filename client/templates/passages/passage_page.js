@@ -5,5 +5,19 @@ Template.passagePage.helpers({
   },
   comments: function() {
     return Activities.find({passageId: this._id, activityType: 'added comment'});
+  },
+  prevPassagePath: function() {
+    if (this.prevPassageId) {
+      return Router.routes['passagePage'].path({storyId: this.storyId, _id: this.prevPassageId});
+    } else {
+      return null;
+    }
+  },
+  nextPassagePath: function() {
+    if (this.nextPassageId) {
+      return Router.routes['passagePage'].path({storyId: this.storyId, _id: this.nextPassageId});
+    } else {
+      return null;
+    }
   }
 });
