@@ -18,14 +18,13 @@ if (Stories.find().count() === 0) {
     submitted: new Date(now - 7 * 3600 * 1000)
   });
   
-  var passageId = Passages.insert({
+  var prevPassageId = Passages.insert({
     storyId: storyOneId,
     userId: owlie._id,
     author: owlie.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
     body: 'It was a dark and stormy night.  Things were said.  Stuff happened.'
   });
-  var prevPassage = Passages.findOne({_id: passageId});
   
   var passage = {
     storyId: storyOneId,
@@ -33,11 +32,10 @@ if (Stories.find().count() === 0) {
     author: stan.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
     body: 'And then the **shit** hit the fan.  The big one hit.  We were all really *shook*.\n\nAnd so it goes.',
-    prevPassageId: prevPassage._id
+    prevPassageId: prevPassageId
   };
   passage._id = Passages.insert(passage);
-  prevPassage.nextPassageId = passage._id;
-  Passages.update(prevPassage);
+  Passages.update(prevPassageId, {$set: {"nextPassageId" : passage._id}});
 
   Activities.insert({
       userId: passage.userId,
