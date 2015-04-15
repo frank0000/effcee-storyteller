@@ -9,10 +9,11 @@
     </p>
   </div>
 
-  {{#if currentUser}}
+  {{#unless currentUser}}
+    <p>You are currently not logged in.</p>
+  {{/unless}}
+  {{#if currentUserIsCollaborator}}
     {{> passageSubmit}}
-  {{else}}
-    <p>Please log in to add a passage.</p>
   {{/if}}
 
 </template>
