@@ -1,10 +1,13 @@
 <template name="storyDocument">
   <div class="story">
     <div class="story-content">
-      <a href="{{pathFor 'storyPage'}}"><h3>{{title}}</h3></a>
+      <a href="{{pathFor 'storyPage'}}">{{title}}</a>
+      {{#if ownStory}}  
+          <a class="btn btn-primary btn-xs" href="{{pathFor 'storyEdit'}}"> Edit story </a>
+          <a class="btn btn-danger btn-xs delete" href="#"> Delete story </a>
+        {{/if}}
       <p>
         <em>creator: {{author}}</em>
-        {{#if ownStory}} | <a href="{{pathFor 'storyEdit'}}">Edit</a>{{/if}}
       </p>
       <p>
         <em>collaborators: {{collaboratorsList}}</em>
