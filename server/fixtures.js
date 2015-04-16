@@ -3,11 +3,13 @@ if (Stories.find().count() === 0) {
 
   // create two users
   var owlieId = Meteor.users.insert({
-    profile: { name: 'Owlie' }
+    profile: { name: 'Owlie' },
+    username: 'owlie'
   });
   var owlie = Meteor.users.findOne(owlieId);
   var stanId = Meteor.users.insert({
-    profile: { name: 'Stan the Man' }
+    profile: { name: 'Stan the Man' },
+    username: 'stantheman'
   });
   var stan = Meteor.users.findOne(stanId);
 
@@ -15,7 +17,8 @@ if (Stories.find().count() === 0) {
     title: '50 Blades of Grass',
     userId: owlie._id,
     author: owlie.profile.name,
-    submitted: new Date(now - 7 * 3600 * 1000)
+    submitted: new Date(now - 7 * 3600 * 1000),
+    collaborators: []
   });
   
   var prevPassageId = Passages.insert({
@@ -71,7 +74,8 @@ if (Stories.find().count() === 0) {
     title: 'Tale of Two Monkeys',
     userId: stan._id,
     author: stan.profile.name,
-    submitted: new Date(now - 10 * 3600 * 1000)
+    submitted: new Date(now - 10 * 3600 * 1000),
+    collaborators: []
   });
   
 }
