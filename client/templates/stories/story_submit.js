@@ -44,9 +44,10 @@ Template.storySubmit.events({
   'submit form': function(e) {
     e.preventDefault();
     
+    var collabVal = $(e.target).find('[name=collaborators]').val();
     var story = {
        title: $(e.target).find('[name=title]').val(),
-       collaborators: $(e.target).find('[name=collaborators]').val().split(',')
+       collaborators: (collabVal? collabVal.split(',') : [])
     };
     
     var errors = validateStory(story);

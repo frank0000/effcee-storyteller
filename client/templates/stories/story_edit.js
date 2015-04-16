@@ -37,7 +37,8 @@ Template.storyEdit.events({
     
     var currentStoryId = this._id;
     
-    var collaborators = $(e.target).find('[name=collaborators]').val().split(',');
+    var collabVal = $(e.target).find('[name=collaborators]').val();
+    var collaborators = (collabVal? collabVal.split(',') : null);
     var collaboratorList = [];
     if (collaborators) {
       collaboratorList = collaborators.map(function(c) {
@@ -45,6 +46,7 @@ Template.storyEdit.events({
         return {userid: matchedUser._id, username: matchedUser.username};
       });
     }
+
     var storyProperties = {
       title: $(e.target).find('[name=title]').val(),
       collaborators: collaboratorList
