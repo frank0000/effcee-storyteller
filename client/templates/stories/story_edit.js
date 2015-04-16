@@ -8,7 +8,8 @@ Template.storyEdit.helpers({
   },
   errorClass: function (field) {
     return !!Session.get('storyEditErrors')[field] ? 'has-error' : '';
-  }
+  },
+
 });
 
 Template.storyEdit.rendered = function() {
@@ -80,12 +81,10 @@ Template.storyEdit.events({
     });
   },
   
-  'click .delete': function(e) {
+  // TODO:refactor to reuse this across story edit and submit
+  'click .cancel': function(e) {
     e.preventDefault();
-    
-    if (confirm("Delete this story?")) {
-      var currentStoryId = this._id;
-      Stories.remove(currentStoryId);
+    if (confirm("Cancel without updating this story?")) {
       Router.go('storiesList');
     }
   }

@@ -2,16 +2,6 @@ Template.storySubmit.created = function() {
   Session.set('storySubmitErrors', {});
 };
 
-Template.storySubmit.usersSearch = function(query, callback) {
-  Meteor.call('usersSearch', query, {}, function(err, res) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    callback(res.map(function(u){ return {value: u.username}; }));
-  });
-};
-
 Template.storySubmit.rendered = function() {
     $('.collaborators').tagsinput({
       itemValue: '_id',
@@ -34,11 +24,9 @@ Template.storySubmit.helpers({
   },
   errorClass: function (field) {
     return !!Session.get('storySubmitErrors')[field] ? 'has-error' : '';
-  },
-  usersList: function() {
-    return Meteor.users.find({_id: {$ne: Meteor.user()._id}}).fetch().map(function(u){ return u.username; });
   }
 });
+
 
 Template.storySubmit.events({
   'submit form': function(e) {
@@ -69,5 +57,12 @@ Template.storySubmit.events({
       Router.go('storyPage', {_id: result._id});  
     });
 
+  },
+  // TODO:refactor to reuse this across story edit and submit
+  'click .cancel': function(e) {
+    e.preventDefault();
+    if (confirm("Cancel without creating this story?")) {
+      Router.go('storiesList');
+    }
   }
 });
