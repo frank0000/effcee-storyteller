@@ -1,6 +1,32 @@
 Template.storySubmit.created = function() {
   Session.set('storySubmitErrors', {});
-}
+};
+
+Template.storySubmit.usersSearch = function(query, callback) {
+  Meteor.call('usersSearch', query, {}, function(err, res) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    callback(res.map(function(u){ return {value: u.username}; }));
+  });
+};
+
+Template.storySubmit.rendered = function() {
+    $('.collaborators').tagsinput({
+      itemValue: '_id',
+      itemText: 'username',
+      typeahead: {
+        source: function() {
+          usersList = Meteor.users.find({_id: {$ne: Meteor.user()._id}}).fetch().map(function(u){ 
+            return {_id: u._id, username: u.username}; 
+          });
+          return (usersList);
+        },
+        displayKey: 'username'
+      }
+    });
+};
 
 Template.storySubmit.helpers({
   errorMessage: function(field) {
@@ -8,6 +34,9 @@ Template.storySubmit.helpers({
   },
   errorClass: function (field) {
     return !!Session.get('storySubmitErrors')[field] ? 'has-error' : '';
+  },
+  usersList: function() {
+    return Meteor.users.find({_id: {$ne: Meteor.user()._id}}).fetch().map(function(u){ return u.username; });
   }
 });
 
@@ -15,8 +44,10 @@ Template.storySubmit.events({
   'submit form': function(e) {
     e.preventDefault();
     
+    var collabVal = $(e.target).find('[name=collaborators]').val();
     var story = {
-       title: $(e.target).find('[name=title]').val()
+       title: $(e.target).find('[name=title]').val(),
+       collaborators: (collabVal? collabVal.split(',') : [])
     };
     
     var errors = validateStory(story);

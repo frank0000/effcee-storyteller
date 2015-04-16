@@ -7,6 +7,12 @@
           <span class="help-block">{{errorMessage 'title'}}</span>
       </div>
     </div>
+    <div class="form-group">
+      <label class="control-label" for="collaborators">Collaborators</label>
+      <div class="controls">
+        <input class="form-control collaborators typeahead" data-role="tagsinput" id="collaborators" name="collaborators" type="text" />
+      </div>
+    </div>
     <input type="submit" value="Submit" class="btn btn-primary"/>
   </form>
 </template>

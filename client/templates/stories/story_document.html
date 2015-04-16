@@ -3,8 +3,11 @@
     <div class="story-content">
       <a href="{{pathFor 'storyPage'}}"><h3>{{title}}</h3></a>
       <p>
-        <em>created by {{author}}</em>
-        {{#if ownStory}}<a href="{{pathFor 'storyEdit'}}">Edit</a>{{/if}}
+        <em>creator: {{author}}</em>
+        {{#if ownStory}} | <a href="{{pathFor 'storyEdit'}}">Edit</a>{{/if}}
+      </p>
+      <p>
+        <em>collaborators: {{collaboratorsList}}</em>
       </p>
     </div>
   </div>

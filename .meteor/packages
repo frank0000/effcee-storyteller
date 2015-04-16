@@ -15,3 +15,5 @@ audit-argument-checks
 tmeasday:errors
 markdown
 meteorhacks:aggregate
+ajduke:bootstrap-tagsinput
+mrt:bootstrap3-typeahead
