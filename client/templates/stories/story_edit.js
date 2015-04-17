@@ -85,7 +85,7 @@ Template.storyEdit.events({
   'click .cancel': function(e) {
     e.preventDefault();
     if (confirm("Cancel without updating this story?")) {
-      Router.go('storiesList');
+      history.go(-1);
     }
   }
 });
