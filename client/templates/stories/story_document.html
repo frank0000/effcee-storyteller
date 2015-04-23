@@ -1,16 +1,26 @@
 <template name="storyDocument">
   <div class="story">
     <div class="story-content">
-      <a href="{{pathFor 'storyPage'}}">{{title}}</a>
+      <h3><a href="{{pathFor 'storyPage'}}">{{title}}</a></h3>
+      <p>
       {{#if ownStory}}  
           <a class="btn btn-primary btn-xs" href="{{pathFor 'storyEdit'}}"> Edit story </a>
           <a class="btn btn-danger btn-xs delete" href="#"> Delete story </a>
         {{/if}}
+      </p>
       <p>
         <em>created by {{author}} {{livestamp submitted}}</em>
       </p>
       <p>
         <em>collaborators: {{collaboratorsList}}</em>
+      </p>
+      <p>
+        Current Author:
+        {{#if ownStory}}
+          {{> m_editable options }}
+        {{else}}
+          {{getCurrentAuthorName}}
+        {{/if}}
       </p>
     </div>
   </div>

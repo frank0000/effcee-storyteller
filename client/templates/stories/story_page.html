@@ -12,7 +12,7 @@
   {{#unless currentUser}}
     <p>You are currently not logged in.</p>
   {{/unless}}
-  {{#if currentUserIsCollaborator}}
+  {{#if currentUserIsCurrentAuthor}}
     {{> passageSubmit}}
   {{/if}}
 

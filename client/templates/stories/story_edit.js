@@ -53,6 +53,11 @@ Template.storyEdit.events({
       collaborators: collaboratorList
     }
 
+    if (!this.currentAuthorId) {
+      storyProperties.currentAuthorId = this.userId;
+      storyProperties.currentAuthorName = this.author;
+    }
+
     var errors = validateStory(storyProperties);
     if (errors.title) {
       return Session.set('storyEditErrors', errors);

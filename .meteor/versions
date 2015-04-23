@@ -78,3 +78,4 @@ underscore@1.0.2
 url@1.0.3
 webapp@1.1.6
 webapp-hashing@1.0.2
+workman:meteor-editable@0.1.8
