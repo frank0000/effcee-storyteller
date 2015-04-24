@@ -3,19 +3,7 @@ Template.storySubmit.created = function() {
 };
 
 Template.storySubmit.rendered = function() {
-    $('.collaborators').tagsinput({
-      itemValue: '_id',
-      itemText: 'username',
-      typeahead: {
-        source: function() {
-          usersList = Meteor.users.find({_id: {$ne: Meteor.user()._id}}).fetch().map(function(u){ 
-            return {_id: u._id, username: u.username}; 
-          });
-          return (usersList);
-        },
-        displayKey: 'username'
-      }
-    });
+    $('.collaborators').tagsinput(getCollaboratorTagInputConfig());
 };
 
 Template.storySubmit.helpers({

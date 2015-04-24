@@ -13,20 +13,10 @@ Template.storyEdit.helpers({
 });
 
 Template.storyEdit.rendered = function() {
-    $('.collaborators').tagsinput({
-      itemValue: '_id',
-      itemText: 'username',
-      typeahead: {
-        source: function() {
-          usersList = Meteor.users.find({_id: {$ne: Meteor.user()._id}}).fetch().map(function(u){ return {_id: u._id, username: u.username}; });
-          return (usersList);
-        },
-        displayKey: 'username'
-      }
-    });
+    $('.collaborators').tagsinput(getCollaboratorTagInputConfig());
     
     this.data.collaborators.forEach(function(c) {
-      $('.collaborators').tagsinput('add', {"_id": c.userid, "username": c.username});
+      $('.collaborators').tagsinput('add', getCollaboratorInputTagValue(c));
     })
     
 };
@@ -39,21 +29,17 @@ Template.storyEdit.events({
     var currentStoryId = this._id;
     
     var collabVal = $(e.target).find('[name=collaborators]').val();
-    var collaborators = (collabVal? collabVal.split(',') : null);
-    var collaboratorList = [];
-    if (collaborators) {
-      collaboratorList = collaborators.map(function(c) {
-        matchedUser = Meteor.users.findOne({_id: c});
-        return {userid: matchedUser._id, username: matchedUser.username};
-      });
-    }
+    var collaboratorIdsList = (collabVal? collabVal.split(',') : null);
+   
+    var collaboratorsList = getPopulatedCollaboratorsList(collaboratorIdsList);
 
     var storyProperties = {
       title: $(e.target).find('[name=title]').val(),
-      collaborators: collaboratorList
+      collaborators: collaboratorsList
     }
 
-    if (!this.currentAuthorId) {
+    if (!this.currentAuthorId || 
+      !findInCollaboratorsList({userId: this.currentAuthorId}, collaboratorsList, 'userId')) {
       storyProperties.currentAuthorId = this.userId;
       storyProperties.currentAuthorName = this.author;
     }
@@ -62,19 +48,6 @@ Template.storyEdit.events({
     if (errors.title) {
       return Session.set('storyEditErrors', errors);
     }
-
-    /*
-    var storyWithSameTitle = Stories.findOne({title: storyProperties.title});
-    if (storyWithSameTitle) {
-      if (storyWithSameTitle._id === currentStoryId) {
-        Errors.throw('No changes made');
-        return Router.go('storyPage', {_id: currentStoryId});
-      }
-      else {
-        return Errors.throw('A story with this title already exists');
-      }
-    }
-    */
     
     Stories.update(currentStoryId, {$set: storyProperties}, function(error) {
       if (error) {

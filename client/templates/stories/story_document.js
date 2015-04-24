@@ -2,13 +2,29 @@ var getAuthorsOptionList = function(story) {
   var authorsList = [];
   authorsList.push({text: story.author, value: story.author});
   story.collaborators.forEach(function(collab) {
-    authorsList.push({text: collab.username, value: collab.username});
+    authorsList.push({text: collab.userName, value: collab.userName});
   });
   
   return authorsList;
 };
 
-var getCurrentAuthor = function(story) {
+var currentAuthorInList = function(story) {
+  if (!story.currentAuthorId) {
+    return true;
+  }
+  if (story.currentAuthorId === story.userId) {
+    return true;
+  }
+  for (var i =0, len=(story.collaborators? selfStory.collaborators.length : 0); i < len; i++) {
+        var collabIt = selfStory.collaborators[i];
+        if (story.currentAuthorId === collabIt.userId) {
+          return true;
+        }
+      }
+      return false;
+}
+
+getCurrentAuthor = function(story) {
   return (story.currentAuthorName? story.currentAuthorName : story.author);
 };
 
@@ -24,8 +40,8 @@ var getSubmitCurrentAuthorFunction = function(story) {
     } else {
       for (var i =0, len=(selfStory.collaborators? selfStory.collaborators.length : 0); i < len; i++) {
         var collabIt = selfStory.collaborators[i];
-        if (inputValue === collabIt.username) {
-          storyProperties = {currentAuthorId: collabIt.userid, currentAuthorName: collabIt.username};
+        if (inputValue === collabIt.userName) {
+          storyProperties = {currentAuthorId: collabIt.userId, currentAuthorName: collabIt.userName};
           break;
         }
       }
@@ -60,7 +76,7 @@ Template.storyDocument.helpers({
       return "";
     }
     return this.collaborators.reduce(function(cum, cur) { 
-      return (cum === ""? cur.username : cum + ", " + cur.username); 
+      return (cum === ""? cur.userName : cum + ", " + cur.userName); 
     }, "");
   },
   getCurrentAuthorName: function() {
@@ -92,8 +108,8 @@ Template.storyDocument.events({
     
     if (found.userid !== this.currentAuthorId) {
       var storyProperties = {
-        currentAuthorId: found.userid,
-        currentAuthorName: found.username
+        currentAuthorId: found.userId,
+        currentAuthorName: found.userName
       }
       Stories.update(this._id, {$set: storyProperties}, function(error) {
         if (error) {

@@ -19,3 +19,7 @@ ajduke:bootstrap-tagsinput
 mrt:bootstrap3-typeahead
 copleykj:livestamp
 workman:meteor-editable
+accounts-twitter
+accounts-google
+accounts-facebook
+service-configuration
