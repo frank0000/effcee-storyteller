@@ -3,7 +3,8 @@ ServiceConfiguration.configurations.upsert(
   {
     $set: {
       clientId: Meteor.settings.googleAuthClientId,
-      secret: Meteor.settings.googleAuthSecret
+      secret: Meteor.settings.googleAuthSecret,
+      loginStyle: "popup"
     }
   }
 );
@@ -12,7 +13,8 @@ ServiceConfiguration.configurations.upsert(
   {
     $set: {
       appId: Meteor.settings.facebookAuthAppId,
-      secret: Meteor.settings.facebookAuthSecret
+      secret: Meteor.settings.facebookAuthSecret,
+      loginStyle: "popup"
     }
   }
 );
@@ -21,7 +23,8 @@ ServiceConfiguration.configurations.upsert(
   {
     $set: {
       consumerKey: Meteor.settings.twitterAuthConsumerKey,
-      secret: Meteor.settings.twitterAuthSecret
+      secret: Meteor.settings.twitterAuthSecret,
+      loginStyle: "popup"
     }
   }
 );
