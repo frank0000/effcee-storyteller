@@ -21,27 +21,15 @@ Template.storyEdit.rendered = function() {
     
 };
 
-// TODO: Refactor to use Meteor method so only do update operation on the server side
 Template.storyEdit.events({
   'submit form': function(e) {
     e.preventDefault();
     
-    var currentStoryId = this._id;
-    
     var collabVal = $(e.target).find('[name=collaborators]').val();
-    var collaboratorIdsList = (collabVal? collabVal.split(',') : null);
-   
-    var collaboratorsList = getPopulatedCollaboratorsList(collaboratorIdsList);
-
     var storyProperties = {
+      _id: this._id,
       title: $(e.target).find('[name=title]').val(),
-      collaborators: collaboratorsList
-    }
-
-    if (!this.currentAuthorId || 
-      !findInCollaboratorsList({userId: this.currentAuthorId}, collaboratorsList, 'userId')) {
-      storyProperties.currentAuthorId = this.userId;
-      storyProperties.currentAuthorName = this.author;
+      collaborators: (collabVal? collabVal.split(',') : [])
     }
 
     var errors = validateStory(storyProperties);
@@ -49,13 +37,13 @@ Template.storyEdit.events({
       return Session.set('storyEditErrors', errors);
     }
     
-    Stories.update(currentStoryId, {$set: storyProperties}, function(error) {
+    Meteor.call('storyUpdate', storyProperties, function(error, result) {
+      // display the error to the user and abort
       if (error) {
-        // display the error to the user
-        Errors.throw(error.reason);
-      } else {
-        Router.go('storyPage', {_id: currentStoryId});
+        return Errors.throw(error.reason);
       }
+
+      history.go(-1);  
     });
   },
   

@@ -37,11 +37,6 @@ Template.storySubmit.events({
         return Errors.throw(error.reason);
       }
 
-      // show this result but route anyway
-      if (result.storyExists) {
-        return Errors.throw('A story with this title already exists');
-      }
-
       Router.go('storyPage', {_id: result._id});  
     });
 
