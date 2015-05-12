@@ -52,7 +52,7 @@ Template.storyDocument.helpers({
     }, "");
   },
   getCurrentAuthorName: function() {
-    return this.currentAuthorName;
+    return (this.currentAuthorName? this.currentAuthorName : this.author);
   }
 });
 
