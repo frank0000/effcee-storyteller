@@ -23,3 +23,5 @@ accounts-twitter
 accounts-google
 accounts-facebook
 service-configuration
+fortawesome:fontawesome
+percolate:migrations

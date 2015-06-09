@@ -18,7 +18,8 @@ if (Stories.find().count() === 0) {
     userId: owlie._id,
     author: owlie.profile.name,
     submitted: new Date(now - 7 * 3600 * 1000),
-    collaborators: []
+    collaborators: [],
+    isPrivate: false
   });
   
   var prevPassageId = Passages.insert({
@@ -75,7 +76,8 @@ if (Stories.find().count() === 0) {
     userId: stan._id,
     author: stan.profile.name,
     submitted: new Date(now - 10 * 3600 * 1000),
-    collaborators: []
+    collaborators: [],
+    isPrivate: false
   });
   
 }

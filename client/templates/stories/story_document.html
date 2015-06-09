@@ -1,7 +1,16 @@
 <template name="storyDocument">
   <div class="story">
     <div class="story-content">
-      <h3><a href="{{pathFor 'storyPage'}}">{{title}}</a></h3>
+      <h3>
+        <a href="{{pathFor 'storyPage'}}">{{title}}</a>
+        <!-- <a class="js-toggle-list-privacy"> -->
+              {{#if isPrivate}}
+                <span class="fa fa-lock" title="Private story"></span>
+              {{else}}
+                <span class="fa fa-unlock-alt" title="Public story"></span>
+              {{/if}}
+            <!-- </a> -->
+      </h3>
       <p>
       {{#if ownStory}}  
           <a class="btn btn-primary btn-xs" href="{{pathFor 'storyEdit'}}"> Edit story </a>

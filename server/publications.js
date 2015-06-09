@@ -1,5 +1,5 @@
 Meteor.publish('stories', function() {
-  return Stories.find();
+  return Stories.find({$or: [{userId: this.userId}, {'collaborators.userId': this.userId}, {isPrivate: false}]});
 });
 
 Meteor.publish('passages', function(storyId) {
