@@ -1,4 +1,7 @@
 Meteor.publish('stories', function() {
+  if (this.userId === null) {
+    return Stories.find({isPrivate: false});
+  }
   return Stories.find({$or: [{userId: this.userId}, {'collaborators.userId': this.userId}, {isPrivate: false}]});
 });
 
