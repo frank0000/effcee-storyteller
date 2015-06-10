@@ -21,6 +21,11 @@ body {
   width: 100%;
 }
 
+a.navbar-brand img {
+  vertical-align: text-top;
+  padding-top: 2px;
+}
+
 .navbar {
   margin-bottom: 10px; }
   /* line 32, ../sass/style.scss */
