@@ -9,6 +9,15 @@ Template.storyEdit.helpers({
   errorClass: function (field) {
     return !!Session.get('storyEditErrors')[field] ? 'has-error' : '';
   },
+  getActiveForVisbilityOption: function(optionId) {
+    if (this.isPrivate && optionId === "private") {
+      return "active";
+    }
+    if (!this.isPrivate && optionId === 'public') {
+      return "active";
+    }
+    return "";
+  }
 
 });
 
@@ -17,7 +26,11 @@ Template.storyEdit.rendered = function() {
     
     this.data.collaborators.forEach(function(c) {
       $('.collaborators').tagsinput('add', getCollaboratorInputTagValue(c));
-    })
+    });
+
+    $('.visibility-toggle').click(function() {
+      $('.visibility-toggle > .btn').toggleClass('active');  
+    });
     
 };
 
@@ -25,11 +38,13 @@ Template.storyEdit.events({
   'submit form': function(e) {
     e.preventDefault();
     
+    var visibilityVal = $('.visibility-toggle > .btn.active').attr('id');
     var collabVal = $(e.target).find('[name=collaborators]').val();
     var storyProperties = {
       _id: this._id,
       title: $(e.target).find('[name=title]').val(),
-      collaborators: (collabVal? collabVal.split(',') : [])
+      collaborators: (collabVal? collabVal.split(',') : []),
+      isPrivate: (visibilityVal === "private")
     }
 
     var errors = validateStory(storyProperties);
