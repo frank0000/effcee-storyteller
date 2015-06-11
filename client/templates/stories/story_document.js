@@ -24,7 +24,7 @@ var getSubmitCurrentAuthorFunction = function(story) {
     Meteor.call('storyUpdate', storyProperties, function(error, result) {
       // display the error to the user and abort
       if (error) {
-        return Errors.throw(error.reason);
+        return FlashMessages.sendError(error.reason);
       }
     });
   }

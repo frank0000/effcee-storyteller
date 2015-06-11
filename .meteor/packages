@@ -12,7 +12,6 @@ sacha:spin
 ian:accounts-ui-bootstrap-3
 accounts-password
 audit-argument-checks
-tmeasday:errors
 markdown
 meteorhacks:aggregate
 ajduke:bootstrap-tagsinput
@@ -25,3 +24,4 @@ accounts-facebook
 service-configuration
 fortawesome:fontawesome
 percolate:migrations
+mrt:flash-messages

@@ -30,7 +30,7 @@ Template.passageEdit.events({
     Passages.update(currentPassageId, {$set: passageProperties}, function(error) {
       if (error) {
         // display the error to the user
-        Errors.throw(error.reason);
+        FlashMessages.sendError(error.reason);
       } else {
         Router.go('passagePage', {storyId: currentStoryId, _id: currentPassageId});
       }

@@ -192,6 +192,7 @@ a.navbar-brand img {
   bottom: 0px;
   pointer-events: none;
 }
+/*
 .alert {
           animation: fadeOut 2700ms ease-in 0s 1 forwards;
   -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
@@ -201,6 +202,11 @@ a.navbar-brand img {
   clear: both;
   margin-bottom: 5px;
   pointer-events: auto;
+}
+*/
+
+.alert {
+  margin-bottom: 10px;
 }
 
 .br-bottom {
@@ -298,4 +304,10 @@ a.navbar-brand img {
   #collaborators {
     width: 500px;
   }
+}
+
+.dropdown-menu .badge {
+  display: inline;
+  padding: 3px 7px;
+  color: #fff
 }

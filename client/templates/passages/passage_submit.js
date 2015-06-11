@@ -29,7 +29,7 @@ Template.passageSubmit.events({
     
     Meteor.call('passageInsert', passage, function(error, passageId) {
       if (error){
-        Errors.throw(error.reason);
+        FlashMessages.sendError(error.reason);
       } else {
         $body.val('');
       }

@@ -22,11 +22,40 @@
               <a href="{{pathFor 'storySubmit'}}">Create New Story</a>
             </li>
             <li class="dropdown">
-              {{> notifications}}
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Stories<b class="caret"></b></a>
+              <ul class="filters dropdown-menu">
+                  <li role="presentation">
+                    <a role="menuitem" class="mystoriesoption" href="/stories?filter=author">
+                      Stories I'm currently authoring
+                        <span class="badge badge-inverse">{{getAuthoringStoriesCount}}</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a role="menuitem" href="/stories?filter=owner">
+                      Stories I own
+                       <span class="badge badge-inverse">{{getOwnedStoriesCount}}</span>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a role="menuitem" href="/stories?filter=collaborator">
+                      Stories I'm collaborating on
+                       <span class="badge badge-inverse">{{getCollaboratingStoriesCount}}</span>
+                    </a>
+                  </li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation" class="disabled">
+                    <a role="menuitem" href="#">Stories I'm following</a>
+                  </li>
+              </ul>
             </li>
           {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+            <li class="dropdown">
+              {{> notifications}}
+            </li>
+          {{/if}}
           {{> loginButtons}}
         </ul>
       </div>
