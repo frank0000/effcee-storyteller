@@ -1,8 +1,9 @@
-.grid-block, .main, .story, .passages, .passage-form, .comments li, .comment-form {
+.grid-block, .main, .story, .passages, .passage-form, .comment-form, .comment-single {
   background: #fff;
   border-radius: 3px;
   padding: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
@@ -83,8 +84,17 @@ a.navbar-brand img {
     float: right;
     margin-top: 7px; }
 
+.passage-item {
+  font-family: "Times New Roman";
+  font-size: 16px;
+}
 .passage-item a {
   color:inherit;
+}
+.empty-content-label {
+  font-style: italic;
+  font-size: 18px;
+  text-align: center;
 }
 
 .passages {
@@ -122,16 +132,28 @@ a.navbar-brand img {
 
 .comments {
   list-style-type: none;
-  margin: 0; }
-  .comments li h4 {
-    font-size: 16px;
-    margin: 0; }
-    .comments li h4 .date {
-      font-size: 12px;
-      font-weight: normal; }
-    .comments li h4 a {
-      font-size: 12px; }
-  .comments li p:last-child {
+  margin: 0; 
+  padding-left: 0; }
+.comments .author {
+  font-weight: bold;
+}
+.comments .date {
+  font-style: italic;
+}
+.comments li h4 a {
+}
+.comments li p:last-child {
+    margin-bottom: 0; }
+
+.comment-body {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 1em;
+  padding-top: 10px;
+}
+.comment-body li {
+}
+.comment-body li p:last-child {
     margin-bottom: 0; }
 
 
@@ -310,4 +332,10 @@ a.navbar-brand img {
   display: inline;
   padding: 3px 7px;
   color: #fff
+}
+
+.login-reminder {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 10px;
 }

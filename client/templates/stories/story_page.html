@@ -1,19 +1,57 @@
 <template name="storyPage">
   {{> storyDocument}}
-  
-  <div class="passages">
-    <p>
-    {{#each passages}}
-      {{> passageItem}}
-    {{/each}}
-    </p>
+ 
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills story-single-nav-bar" role="tablist">
+    <li role="presentation" class="active"><a href="#story" aria-controls="story" role="tab" data-toggle="tab">Story</a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
+  </ul>
+
+ <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="story">
+      <div class="passages">
+        <p>
+          {{#if passagesEmpty}}
+            <div class="empty-content-label">No passages for this story</div>
+          {{/if}}
+          {{#each passages}}
+            {{> passageItem}}
+          {{/each}}
+        </p>
+      </div>
+      
+      {{#unless currentUser}}
+        <p class="login-reminder">You are not logged in.</p>
+      {{/unless}}
+      {{#if currentUserIsCurrentAuthor}}
+        {{> passageSubmit}}
+      {{/if}}
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="comments">
+
+      {{#if currentUser}}
+        {{> commentSubmit}}
+      {{else}}
+        <p class="login-reminder">Please log in to leave a comment.</p>
+      {{/if}}
+
+      <ul class="comments">
+        {{#if commentsEmpty}}
+          <li class="empty-content-label comment-single"><p>No comments for this story</p></li>
+        {{/if}}
+        {{#each comments}}
+          {{> commentItem}}
+        {{/each}}
+      </ul>
+
+    </div>
+
   </div>
 
-  {{#unless currentUser}}
-    <p>You are currently not logged in.</p>
-  {{/unless}}
-  {{#if currentUserIsCurrentAuthor}}
-    {{> passageSubmit}}
-  {{/if}}
+</div>
 
 </template>

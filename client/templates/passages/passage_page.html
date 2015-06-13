@@ -29,16 +29,19 @@
 
   </div>
 
+  {{#if currentUser}}
+    {{> commentSubmit}}
+  {{else}}
+    <p class="login-reminder">Please log in to leave a comment.</p>
+  {{/if}}
+
   <ul class="comments">
+    {{#if commentsEmpty}}
+      <li class="empty-content-label comment-single"><p>No comments for this passage</p></li>
+    {{/if}}
     {{#each comments}}
       {{> commentItem}}
     {{/each}}
   </ul>
-
-  {{#if currentUser}}
-    {{> commentSubmit}}
-  {{else}}
-    <p>Please log in to leave a comment.</p>
-  {{/if}}
   
 </template>

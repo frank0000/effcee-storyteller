@@ -4,7 +4,10 @@ Template.passagePage.helpers({
     return Meteor.userId() === this.userId || Meteor.userId() === story.userId;
   },
   comments: function() {
-    return Activities.find({passageId: this._id, activityType: 'added comment'});
+    return Activities.find({passageId: this._id, activityType: 'added comment'}, {sort: {timeCompleted: -1}});
+  },
+  commentsEmpty: function() {
+    return (Activities.find({passageId: this._id, activityType: 'added comment'}).count() === 0);
   },
   prevPassagePath: function() {
     if (this.prevPassageId) {

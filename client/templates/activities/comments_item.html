@@ -1,9 +1,16 @@
 <template name="commentItem">
-  <li>
-    <h4>
+  <li class="comment-single">
       <span class="author">{{userName}}</span>
-      <span class="date">on {{submittedText}}</span>
-    </h4>
-    <p>{{body}}</p>
+      <span class="date">{{livestamp timeCompleted}}</span>
+      {{#if doPassageReference ..}}
+        <span class="passage-reference">in reference to 
+          <a href="{{getPassageReference}}" text="yadda, yadda">{{getPassageExcerpt}}</a>
+        </span>
+      {{/if}}
+      <ul class="comment-body">
+        <li>
+          <p>{{body}}</p>
+        </li>
+      </ul>
   </li>
 </template>

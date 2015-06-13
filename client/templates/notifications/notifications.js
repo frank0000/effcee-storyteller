@@ -11,9 +11,11 @@ Template.notificationItem.helpers({
   notificationStoryPath: function() {
     if (this.passageId) {
       return Router.routes.passagePage.path({storyId: this.storyId, _id: this.passageId});
-    } else {
-      return Router.routes.storyPage.path({_id: this.storyId});
+    } 
+    if (this.activityType === "added comment") {
+      return Router.routes.storyPage.path({_id: this.storyId}) + "#comments";
     }
+    return Router.routes.storyPage.path({_id: this.storyId});
   },
   notificationActivityTypeLabel: function() {
     var activityLabel = this.activityType;

@@ -11,7 +11,6 @@ Meteor.publish('passages', function(storyId) {
   // get the story if have proper acccess permission
   var containingStory;
   if (this.userId == null) {
-    console.log("nobodoy here");
     containingStory = Stories.findOne({_id: storyId, isPrivate: false});
   } else {
     containingStory = Stories.findOne(
@@ -27,9 +26,17 @@ Meteor.publish('passages', function(storyId) {
   return Passages.find({storyId: storyId}, {sort: {submitted: 1}});
 });
 
-Meteor.publish('activities', function(passageId) {
-  check(passageId, String);
-  return Activities.find({passageId: passageId});
+Meteor.publish('activities', function(params) {
+  check(params, {
+    storyId: String,
+    passageId: Match.Optional(String)
+  });
+
+  if (params.passageId) {
+    return Activities.find({storyId: params.storyId, passageId: params.passageId});
+  } else {
+    return Activities.find({storyId: params.storyId});
+  }
 });
 
 Meteor.publish('notifications', function() {
