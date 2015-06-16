@@ -25,3 +25,4 @@ service-configuration
 fortawesome:fontawesome
 percolate:migrations
 mrt:flash-messages
+aldeed:template-extension

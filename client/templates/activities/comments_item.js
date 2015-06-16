@@ -1,0 +1,1 @@
+Template.commentItem.inheritsHelpersFrom("activityItem");
