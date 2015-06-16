@@ -5,6 +5,9 @@ Template.storyPage.helpers({
   comments: function() {
     return Activities.find({storyId: this._id, activityType: 'added comment'}, {sort: {timeCompleted: -1}});
   },
+  activities: function() {
+    return Activities.find({storyId: this._id}, {sort: {timeCompleted: -1}});
+  },
   commentsEmpty: function() {
     return (Activities.find({storyId: this._id, activityType: 'added comment'}).count() === 0);
   },

@@ -1,16 +1,19 @@
-<template name="commentItem">
+<template name="activityItem">
   <li class="comment-single">
       <span class="author">{{userName}}</span>
+      <span class="action">{{activityType}}</span>
       {{#if doPassageReference ..}}
-        <span class="passage-reference">about passage 
+        <span class="passage-reference">{{getPassageReferenceLabel}}
           <a href="{{getPassageReference}}">{{getPassageExcerpt}}</a>
         </span>
       {{/if}}
       <span class="date">{{livestamp timeCompleted}}</span>
+      {{# if body}}
       <ul class="comment-body">
         <li>
           <p>{{body}}</p>
         </li>
       </ul>
+      {{/if}}
   </li>
 </template>

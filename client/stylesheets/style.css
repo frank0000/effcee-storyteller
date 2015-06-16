@@ -339,3 +339,21 @@ a.navbar-brand img {
   margin-top: 10px;
   margin-left: 10px;
 }
+
+.story-single-nav-bar li.active a, 
+.story-single-nav-bar li.active a:hover, 
+.story-single-nav-bar li.active a:focus {
+  background-color: #777;
+}
+
+.story-single-nav-bar li a {
+  color: #666;
+}
+
+.story-single-nav-bar li a:hover,
+.story-single-nav-bar li a:focus {
+  color: #333;
+}
+
+
+
