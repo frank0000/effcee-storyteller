@@ -60,6 +60,9 @@
       {{/if}}
 
       <ul class="comments">
+        {{#if activitiesEmpty}}
+          <li class="empty-content-label comment-single"><p>No activity for this story</p></li>
+        {{/if}}
         {{#each activities}}
           {{> activityItem}}
         {{/each}}

@@ -11,6 +11,9 @@ Template.storyPage.helpers({
   commentsEmpty: function() {
     return (Activities.find({storyId: this._id, activityType: 'added comment'}).count() === 0);
   },
+  activitiesEmpty: function() {
+    return (Activities.find({storyId: this._id}).count() === 0);
+  },
   passagesEmpty: function() {
     return (Passages.find({storyId: this._id}).count() === 0);
   },
